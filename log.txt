@@ -1,0 +1,169 @@
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~
+$ cd desktop 
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop (feature)
+$ git init git-comandos
+Initialized empty Git repository in C:/Users/Priscilla A/Desktop/git-comandos/.g
+it/
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop (feature)
+$ cd git-comandos
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git config --global user.name "Priscilla Alvarado"
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git config --global user.email "priscilla.alvarado@correounivalle.edu.co"
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git checkout -b feature
+Switched to a new branch 'feature'
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (feature)
+$ echo "Texto inicial" > archivo.txt
+git add archivo.txt
+git commit -m "Commit inicial"
+warning: in the working copy of 'archivo.txt', LF will be replaced by CRLF the n
+ext time Git touches it
+[feature (root-commit) 4a10dad] Commit inicial
+ 1 file changed, 1 insertion(+)
+ create mode 100644 archivo.txt
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (feature)
+$ echo "Texto dos en feature" >> archivo.txt
+git commit -am "Segundo commit en feature"
+warning: in the working copy of 'archivo.txt', LF will be replaced by CRLF the n
+ext time Git touches it
+[feature f6fe525] Segundo commit en feature
+ 1 file changed, 1 insertion(+)
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (feature)
+$ echo "Texto tres en feature" >> archivo.txt
+git commit -am "Tercer commit en feature"
+warning: in the working copy of 'archivo.txt', LF will be replaced by CRLF the n
+ext time Git touches it
+[feature c94777f] Tercer commit en feature
+ 1 file changed, 1 insertion(+)
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (feature)
+$ git checkout -b master
+Switched to a new branch 'master'
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git branch
+  feature
+* master
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git merge feature
+Already up to date.
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git reset --hard HEAD~1
+HEAD is now at f6fe525 Segundo commit en feature
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git rebase feature
+Successfully rebased and updated refs/heads/master.
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (hotfix)
+$ git branch
+  feature
+* hotfix
+  master
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (hotfix)
+$ echo "Corrección urgente" >> archivo.txt
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (hotfix)
+$ git commit -am "Hotfix"
+warning: in the working copy of 'archivo.txt', LF will be replaced by CRLF the next time Git touches it
+[hotfix 666e015] Hotfix
+ 1 file changed, 1 insertion(+)
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (hotfix)
+$ git checkout master
+Switched to branch 'master'
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git cherry-pick hotfix
+On branch master
+You are currently cherry-picking commit 666e015.
+  (all conflicts fixed: run "git cherry-pick --continue")
+  (use "git cherry-pick --skip" to skip this patch)
+  (use "git cherry-pick --abort" to cancel the cherry-pick operation)
+
+nothing to commit, working tree clean
+The previous cherry-pick is now empty, possibly due to conflict resolution.
+If you wish to commit it anyway, use:
+
+    git commit --allow-empty
+
+Otherwise, please use 'git cherry-pick --skip'
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master|CHERRY-PICKING)
+$ git cherry-pick --skip
+
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git reflog
+118e4ac (HEAD -> master) HEAD@{0}: commit: Hotfix
+d7cb7dc HEAD@{7}: cherry-pick: Hotfix
+c94777f (feature) HEAD@{8}: checkout: moving from hotfix to master
+6d346da HEAD@{9}: commit: Hotfix
+c94777f (feature) HEAD@{10}: checkout: moving from master to hotfix
+c94777f (feature) HEAD@{11}: rebase (finish): returning to refs/heads/master
+c94777f (feature) HEAD@{12}: rebase (start): checkout feature
+f6fe525 HEAD@{13}: reset: moving to HEAD~1
+c94777f (feature) HEAD@{14}: checkout: moving from feature to master
+c94777f (feature) HEAD@{15}: commit: Tercer commit en feature
+f6fe525 HEAD@{16}: commit: Segundo commit en feature
+4a10dad HEAD@{17}: commit (initial): Commit inicial
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (feature)
+$ echo "Cambio en feature" > conflicto.txt
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (feature)
+$ git commit -am "Cambio en feature"
+On branch feature
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        conflicto.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ echo "Cambio en master" > conflicto.txt
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git commit -am "Cambio en master"
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        conflicto.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Priscilla A@DESKTOP-3064422 MINGW64 ~/desktop/git-comandos (master)
+$ git merge feature
+Already up to date.
+
+
+
+
+
+
+
+
